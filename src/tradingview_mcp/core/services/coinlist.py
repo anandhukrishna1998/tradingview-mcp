@@ -21,7 +21,7 @@ def load_symbols(exchange: str) -> List[str]:
             if os.path.exists(path):
                 with open(path, 'r', encoding='utf-8') as f:
                     content = f.read()
-                symbols = [line.strip() for line in content.split('\n') if line.strip()]
+                symbols = [line.strip() for line in content.split('\n') if line.strip() and not line.strip().startswith('#')]
                 if symbols:  # Only return if we actually got symbols
                     return symbols
         except (FileNotFoundError, IOError, UnicodeDecodeError):

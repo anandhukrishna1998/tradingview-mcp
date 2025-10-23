@@ -190,6 +190,8 @@ Our proprietary rating system helps identify trading opportunities:
 ### 📊 Traditional Markets
 - **NASDAQ** (NASDAQ) - US tech stocks (AAPL, MSFT, TSLA)
 - **BIST** (BIST) - Turkish stock market (Borsa İstanbul)
+- **NSE** (NSE) - National Stock Exchange of India (RELIANCE, TCS, HDFCBANK)
+- **BSE** (BSE) - Bombay Stock Exchange of India (RELIANCE, TCS, INFY)
 - More markets coming soon!
 
 ### ⏰ Supported Timeframes
@@ -206,20 +208,51 @@ Our proprietary rating system helps identify trading opportunities:
 - **Volume Analysis** - Market participation
 - **Price Action** - OHLC data with percentage changes
 
+## 🇮🇳 Indian Market Usage
+
+### NSE (National Stock Exchange) Examples:
+```python
+# Get top gainers from NSE
+top_gainers(exchange="NSE", timeframe="1D", limit=10)
+
+# Analyze specific Indian stock
+coin_analysis(symbol="RELIANCE", exchange="NSE", timeframe="1D")
+
+# Bollinger band scan for Indian stocks
+bollinger_scan(exchange="NSE", timeframe="1D", bbw_threshold=0.03, limit=20)
+```
+
+### BSE (Bombay Stock Exchange) Examples:
+```python
+# Get top losers from BSE
+top_losers(exchange="BSE", timeframe="1D", limit=10)
+
+# Volume breakout analysis for Indian stocks
+volume_breakout_scanner(exchange="BSE", timeframe="1D", volume_multiplier=2.0)
+```
+
+### Popular Indian Stocks Available:
+- **Banking**: HDFCBANK, ICICIBANK, SBIN, AXISBANK, KOTAKBANK
+- **IT**: TCS, INFY, HCLTECH, WIPRO, TECHM
+- **Pharma**: SUNPHARMA, DRREDDY, CIPLA, LUPIN, BIOCON
+- **Auto**: MARUTI, TATAMOTORS, BAJAJ-AUTO, EICHERMOT
+- **Energy**: RELIANCE, ONGC, BPCL, GAIL, COALINDIA
+
 ## 🚨 Troubleshooting
 
 ### Common Issues:
 
 **1. "No data found" errors:**
-- Try different exchanges (KuCoin usually works best)
+- Try different exchanges (KuCoin usually works best for crypto, NSE for Indian stocks)
 - Use standard timeframes (15m, 1h, 1D)
-- Check symbol format (e.g., "BTCUSDT" not "BTC")
+- Check symbol format (e.g., "BTCUSDT" for crypto, "NSE:RELIANCE" for Indian stocks)
 
 **2. Empty arrays or rate limiting:**
 - If you get empty results, you may have hit TradingView's rate limits
 - Wait 5-10 minutes between query sessions
 - The server automatically handles retries
-- KuCoin and BIST have the most reliable data
+- KuCoin and BIST have the most reliable data for crypto
+- NSE and BSE provide reliable data for Indian stocks
 
 **3. Claude Desktop not detecting the server:**
 - Restart Claude Desktop after adding configuration

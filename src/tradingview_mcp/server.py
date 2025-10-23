@@ -73,7 +73,17 @@ def _percent_change(o: Optional[float], c: Optional[float]) -> Optional[float]:
 def _tf_to_tv_resolution(tf: Optional[str]) -> Optional[str]:
 	if not tf:
 		return None
-	return {"5m": "5", "15m": "15", "1h": "60", "4h": "240", "1D": "1D", "1W": "1W", "1M": "1M"}.get(tf)
+	# Enhanced timeframe mapping for different markets
+	resolution_map = {
+		"5m": "5", 
+		"15m": "15", 
+		"1h": "60", 
+		"4h": "240", 
+		"1D": "1D", 
+		"1W": "1W", 
+		"1M": "1M"
+	}
+	return resolution_map.get(tf)
 
 
 def _fetch_bollinger_analysis(exchange: str, timeframe: str = "4h", limit: int = 50, bbw_filter: float = None) -> List[Row]:
@@ -967,10 +977,10 @@ def exchanges_list() -> str:
             if exchanges:
                 return f"Available exchanges: {', '.join(sorted(exchanges))}"
         
-        # Fallback to static list
-        return "Common exchanges: KUCOIN, BINANCE, BYBIT, OKX, COINBASE, GATEIO, HUOBI, BITFINEX, KRAKEN, BITSTAMP, BIST, NASDAQ"
+        # Fallback to static list including Indian markets
+        return "Common exchanges: KUCOIN, BINANCE, BYBIT, OKX, COINBASE, GATEIO, HUOBI, BITFINEX, KRAKEN, BITSTAMP, BIST, NASDAQ, NSE, BSE"
     except Exception:
-        return "Common exchanges: KUCOIN, BINANCE, BYBIT, OKX, COINBASE, GATEIO, HUOBI, BITFINEX, KRAKEN, BITSTAMP, BIST, NASDAQ"
+        return "Common exchanges: KUCOIN, BINANCE, BYBIT, OKX, COINBASE, GATEIO, HUOBI, BITFINEX, KRAKEN, BITSTAMP, BIST, NASDAQ, NSE, BSE"
 def main() -> None:
 	parser = argparse.ArgumentParser(description="TradingView Screener MCP server")
 	parser.add_argument("transport", choices=["stdio", "streamable-http"], default="stdio", nargs="?", help="Transport (default stdio)")
